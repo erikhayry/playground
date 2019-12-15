@@ -1,0 +1,95 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<title>Video endscreen</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+
+<script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+<style>
+    html{
+        padding: 20px;
+    }
+    h2{
+        margin-top: 30px;
+        margin-bottom: 10px;
+    }
+
+    iframe{
+        border: 2px solid black;
+    }
+
+    .device{
+        width: 100%;
+    }
+
+    .device-variants{
+        width: 100%;
+        white-space: nowrap;
+        overflow: auto;
+    }
+
+    .device-variant{
+        padding: 20px;
+        display: inline-block;
+        vertical-align: top;
+    }
+    
+</style>
+<body translate="no">
+<div id="root"></div>
+<script type="text/babel">
+    const deviceList = [
+        {
+            name: 'iPhone X',
+            width: 375,
+            height: 812
+        },
+        {
+            name: 'iPhone 4',
+            width: 320,
+            height: 480
+        },
+        {
+            name: 'Xperia 5',
+            width: 360,
+            height: 840
+        },
+        {
+            name: 'iPad',
+            width: 768,
+            height: 1024
+        }
+    ]
+
+  function DeviceList(){
+      return (
+          <ul>
+            {deviceList.map(({name, width, height}) => 
+                    <li className="device">
+                        <ul className="device-variants">
+                            <li className="device-variant">
+                                <h2>{name} (portrait)</h2>
+                                <iframe src="endscreen.html" frameborder="2" width={width} height={height}></iframe>
+                            </li>
+                            <li className="device-variant">
+                                <h2>{name} (landscape)</h2>
+                                <iframe src="endscreen.html" frameborder="2" width={height} height={width}></iframe>
+                            </li>
+                        </ul>
+
+                    </li>    
+            )}
+          </ul>
+      )
+  }  
+
+  ReactDOM.render(
+    DeviceList(),
+    document.getElementById('root')
+  );
+
+</script>
+</body>
+</html>
