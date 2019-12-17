@@ -2,17 +2,7 @@
 <meta charset="UTF-8">
 <title>Video endscreen</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-<script>
-  window.console = window.console || function(t) {};
-</script>
-<script>
-  if (document.location.search.match(/type=embed/gi)) {
-    window.parent.postMessage("resize", "*");
-  }
-</script>
 <body translate="no">
-
-
 <style>
 html,
 body {
@@ -24,15 +14,6 @@ body {
 .modal {
   height: 100%;
   width: 100%;
-}
-.modal::after {
-  display: block;
-  position: fixed;
-  left: 0;
-  top: 0;
-  content: "portrait-width-regular: 340px || portrait-height-regular: 734px \alandscape-width-regular: 680px || landscape-height-regular: 474px";
-  white-space: pre;
-  color: red;
 }
 
 img {
@@ -51,8 +32,7 @@ img {
   position: absolute;
 }
 
-.header,
-.footer {
+.header {
   height: 77px;
   background-color: #fff;
   width: 100%;
@@ -60,14 +40,7 @@ img {
   position: fixed;
   left: 0;
   z-index: 1;
-}
-
-.header {
   top: 0;
-}
-
-.footer {
-  bottom: 0;
 }
 
 video {
@@ -134,7 +107,8 @@ PORTRAIT BREKAPOINTS
     height: 50%;
   }
 }
-@media (orientation: portrait) and (min-height: 734px) {
+
+@media (orientation: portrait) and (min-height: 600px) {
   ul {
     flex-direction: column;
   }
@@ -148,27 +122,6 @@ PORTRAIT BREKAPOINTS
     display: flex;
   }
 }
-@media (orientation: portrait) and (min-width: 340px) {
-  ul {
-    flex-direction: row;
-  }
-
-  li {
-    align-items: center;
-    justify-content: center;
-  }
-
-  li.odd {
-    align-items: center;
-    justify-content: center;
-    display: flex;
-  }
-
-  img {
-    width: 100%;
-    height: auto;
-  }
-}
 /*
 LANDSCAPE BREKAPOINTS
 */
@@ -177,7 +130,6 @@ LANDSCAPE BREKAPOINTS
     width: auto;
     height: 100%;
   }
-
   .video-wrapper {
     width: 50%;
     height: 100%;
@@ -191,27 +143,26 @@ LANDSCAPE BREKAPOINTS
     /* align image verically */
   }
 }
-@media (orientation: landscape) and (min-width: 680px) {
+
+@media (orientation: landscape) and (min-width: 800px) {
+  img {
+    width: 100%;
+    height: auto;
+  }
   li.odd {
     display: flex;
   }
 }
-@media (orientation: landscape) and (min-height: 474px) {
-  ul {
-    flex-direction: column;
-  }
 
-  li {
-    align-items: flex-end;
-  }
-
-  li.odd {
-    align-items: flex-start;
-    display: flex;
+/*
+  Target device where the endscreen area when 50% has portrait like aspect ratio (many tablets)
+*/
+@media (orientation: landscape) and (min-aspect-ratio: 2/1){
+  img {
+    width: auto;
+    height: 100%;
   }
 }
-
-
 
 </style><div class="modal">
 <div class="video-wrapper">
